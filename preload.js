@@ -1,9 +1,5 @@
-const { contextBridge } = require('electron/renderer')
+const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('versions', {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  loadEcgData: () => ipcRenderer.invoke('load-ecg-data'),
-  saveEcgData: (data) => ipcRenderer.invoke('save-ecg-data', data)
-})
+contextBridge.exposeInMainWorld('api', {
+    loadCsv: () => ipcRenderer.invoke('load-csv')
+});

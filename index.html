@@ -1,38 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мониторинг ЭКГ</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ECG Monitor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Мониторинг ЭКГ</h1>
-        <nav>
-            <button onclick="displaySection('monitoring')">Мониторинг</button>
-            <button onclick="displaySection('savedData')">Сохраненные данные</button>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Секция мониторинга ЭКГ -->
-        <div id="monitoring" class="content-section">
-            <h2>Реальное время ЭКГ</h2>
-            <canvas id="ecgCanvas" width="600" height="200"></canvas>
-            <button onclick="generateEcgData()">Запустить ЭКГ</button>
-        </div>
-
-        <!-- Секция просмотра сохраненных данных ЭКГ -->
-        <div id="savedData" class="content-section hidden">
-            <h2>Просмотр сохраненных данных ЭКГ</h2>
-            <div id="savedDataList">
-                <!-- Сюда динамически добавляются кнопки для каждой записи ЭКГ -->
-            </div>
-            <button id="loadDataBtn">Загрузить данные ЭКГ</button>
-        </div>
-    </main>
-
-    <script src="main.js"></script>
+    <h1>ECG Monitoring Application</h1>
+    <button id="loadCsvButton">Load ECG Data</button>
+    <canvas id="ecgChart"></canvas>
+    <script src="renderer.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-// main.js
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -8,14 +8,25 @@ function createWindow() {
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true,
-            contextIsolation: false,
+            contextIsolation: true,
+            enableRemoteModule: false,
         },
     });
+
     win.loadFile('index.html');
 }
 
 app.on('ready', createWindow);
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+
+// Load CSV Data
+ipcMain.handle('load-csv', async () => {
+    const { canceled, filePaths } = await dialog.showOpenDialog({
+        filters: [{ name: 'CSV Files', extensions: ['csv'] }],
+        properties: ['openFile']
+    });
+
+    if (canceled || filePaths.length === 0) return null;
+
+    const csvData = fs.readFileSync(filePaths[0], 'utf-8');
+    return csvData;
 });

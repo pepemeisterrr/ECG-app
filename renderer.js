@@ -1,59 +1,42 @@
-const { ipcRenderer } = require("electron");
+// renderer.js
 
-let ecgData = [];  // Хранит записи ЭКГ
+const parseCSV = (csvData) => {
+  const rows = csvData.trim().split('\n').map(row => row.split(','));
+  const ecgData = rows.map(row => ({
+      data: row.slice(0, -1).map(Number),  // ECG samples
+      label: row.slice(-1)[0]  // Class label
+  }));
+  return ecgData;
+};
 
-// Отображает сгенерированные или загруженные данные
-function displayEcgData(data) {
-    const canvas = document.getElementById("ecgCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.strokeStyle = "#333";
-    ctx.lineWidth = 2;
-    data.forEach((point, i) => {
-        const x = (canvas.width / data.length) * i;
-        const y = (canvas.height / 2) - point;
-        ctx.lineTo(x, y);
-    });
-    ctx.stroke();
-}
+const renderECGGraph = (data) => {
+  const ctx = document.getElementById('ecgChart').getContext('2d');
+  const ecgChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: data.map((_, index) => index),  // Time points
+          datasets: [{
+              label: 'ECG Data',
+              data: data,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              x: { display: false },
+              y: { suggestedMin: -1, suggestedMax: 1 }
+          }
+      }
+  });
+};
 
-// Генерация синтетических данных ЭКГ
-function generateEcgData() {
-    const data = Array.from({ length: 600 }, () => Math.sin(Math.random() * 2 * Math.PI) * 50);
-    displayEcgData(data);
-}
-
-// Загрузка и отображение ранее сохраненных данных
-function loadPreviousEcgData() {
-    const savedDataList = document.getElementById("savedDataList");
-    savedDataList.innerHTML = ecgData.map((data, index) => 
-        `<button onclick="viewSavedEcg(${index})">Запись ${index + 1}</button>`).join("");
-}
-
-// Загрузка данных из JSON файла (или API)
-async function loadEcgDataFromFile() {
-    const response = await fetch("data/real_ecg_data.json");
-    const data = await response.json();
-    ecgData.push(data);
-    loadPreviousEcgData();
-}
-
-// Просмотр выбранной записи ЭКГ
-function viewSavedEcg(index) {
-    displayEcgData(ecgData[index]);
-}
-
-// Переключение секций
-function displaySection(sectionId) {
-    document.querySelectorAll(".content-section").forEach(section => {
-        section.classList.add("hidden");
-    });
-    document.getElementById(sectionId).classList.remove("hidden");
-}
-
-// Обновление интерфейса
-document.addEventListener("DOMContentLoaded", () => {
-    const loadButton = document.getElementById("loadDataBtn");
-    loadButton.addEventListener("click", loadEcgDataFromFile);
+document.getElementById('loadCsvButton').addEventListener('click', async () => {
+  const csvData = await window.api.loadCsv();
+  if (csvData) {
+      const ecgData = parseCSV(csvData);
+      const sample = ecgData[0].data;  // Display the first sample for simplicity
+      renderECGGraph(sample);
+  }
 });
