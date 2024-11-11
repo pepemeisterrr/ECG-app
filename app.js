@@ -3,7 +3,7 @@ function showTab(tabId) {
   document.getElementById('history').style.display = tabId === 'history' ? 'block' : 'none';
 }
 
-// Инициализация графика ЭКГ
+// Инициализация графика
 const canvas = document.getElementById('ecg-canvas');
 const ctx = canvas.getContext('2d');
 
