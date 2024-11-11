@@ -7,7 +7,7 @@ body, html {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  background: linear-gradient(135deg, #a9ff68, #ff8989);
 }
 
 .app-container {
@@ -20,9 +20,13 @@ body, html {
   width: 100%;
 }
 
+/* Стиль заголовка */
 h1 {
-  color: #333;
-  font-size: 2em;
+  font-size: 2.5em;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff8989, #a9ff68);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
 
@@ -37,16 +41,18 @@ h1 {
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #ff8989, #a9ff68);
   color: #ffffff;
   border: none;
   border-radius: 20px;
   font-size: 1em;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
 }
 
 .tab-btn:hover {
-  background: linear-gradient(135deg, #5563d4, #5b3a8e);
+  background: linear-gradient(135deg, #a9ff68, #ff8989);
+  transform: scale(1.05);
 }
 
 .tab-content {
