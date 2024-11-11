@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мониторинг ЭКГ</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECG Monitoring App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Мониторинг ЭКГ</h1>
-        <nav>
-            <button onclick="displaySection('monitoring')">Мониторинг</button>
-            <button onclick="displaySection('savedData')">Сохраненные данные</button>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Секция мониторинга ЭКГ -->
-        <div id="monitoring" class="content-section">
-            <h2>Реальное время ЭКГ</h2>
-            <canvas id="ecgCanvas" width="600" height="200"></canvas>
-            <button onclick="generateEcgData()">Запустить ЭКГ</button>
-        </div>
-
-        <!-- Секция просмотра сохраненных данных ЭКГ -->
-        <div id="savedData" class="content-section hidden">
-            <h2>Просмотр сохраненных данных ЭКГ</h2>
-            <div id="savedDataList">
-                <!-- Сюда динамически добавляются кнопки для каждой записи ЭКГ -->
-            </div>
-            <button id="loadDataBtn">Загрузить данные ЭКГ</button>
-        </div>
-    </main>
-
-    <script src="main.js"></script>
+  <div class="app-container">
+    <h1>ECG Monitoring</h1>
+    <div class="tab-container">
+      <button class="tab-btn" onclick="showTab('realtime')">Real-time Monitoring</button>
+      <button class="tab-btn" onclick="showTab('history')">History</button>
+    </div>
+    <div id="realtime" class="tab-content">
+      <h2>Real-time ECG</h2>
+      <canvas id="ecg-canvas"></canvas>
+    </div>
+    <div id="history" class="tab-content" style="display:none;">
+      <h2>Saved ECG Data</h2>
+      <p>No data available</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>
