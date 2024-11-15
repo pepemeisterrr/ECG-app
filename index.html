@@ -19,20 +19,34 @@
       padding: 0.8rem;
     }
     .navbar-brand {
-      color: white;
+      color: #fff8e7;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       font-size: 1.5rem;
     }
     .nav-link {
-      color: white;
+      color: #fff8e7;
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
       margin-right: 1rem;
       font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.5); /* Полупрозрачная рамка */
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1); /* Лёгкий фон, чтобы кнопка выделялась */
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.1s ease;
     }
     .nav-link:hover {
-      color: #be9b7b; /* Песочный оттенок */
+      color: #fff4e6; /* Светлый кремовый */
+      background-color: #854442; /* Красновато-коричневый */
+      border-color: #fff4e6; /* Белая рамка при наведении */
+      transform: scale(1.05); /* Лёгкое увеличение */
+    }
+    .nav-link:active {
+      color: #fff8e7;
+      background-color: #3c2f2f; /* Тёмный кофейный */
+      border-color: #3c2f2f; /* Тот же цвет, что у фона кнопки */
+      transform: scale(0.95); /* Лёгкое сжатие при нажатии */
     }
     #ecg-canvas {
       width: 100%;
@@ -54,7 +68,7 @@
       margin-top: 2rem;
     }
   </style>
-</head>
+  </head>
 <body>
   <!-- Навигационная панель -->
   <nav class="navbar navbar-expand-lg">
