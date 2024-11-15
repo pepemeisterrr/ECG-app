@@ -24,7 +24,7 @@ function drawStaticECG() {
   ctx.lineWidth = 1.5;
   ctx.stroke();
 }
-// Обновление индикатора авторизации
+// Обновление индикатора авторизации!
 function updateStatusIndicator(isOnline) {
     const indicator = document.getElementById('user-status-indicator');
     indicator.textContent = isOnline ? 'Online' : 'Offline';
