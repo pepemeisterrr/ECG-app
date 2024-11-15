@@ -1,9 +1,13 @@
-const { contextBridge } = require('electron/renderer')
+const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('versions', {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  loadEcgData: () => ipcRenderer.invoke('load-ecg-data'),
-  saveEcgData: (data) => ipcRenderer.invoke('save-ecg-data', data)
-})
+contextBridge.exposeInMainWorld('electronAPI', {
+    loginUser: (userData) => ipcRenderer.send('login-user', userData),
+    registerUser: (userData) => ipcRenderer.send('register-user', userData),
+    logoutUser: () => ipcRenderer.send('logout-user'),
+    receive: (channel, func) => ipcRenderer.on(channel, (event, ...args) => func(...args)),
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    console.log('Preload script loaded');
+});
+//привет

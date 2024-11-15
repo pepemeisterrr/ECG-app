@@ -1,5 +1,5 @@
 {
-  "name": "ecg-monitoring-app",
+  "name": "ecg-monitor",
   "version": "1.0.0",
   "description": "ECG Monitoring Application",
   "main": "main.js",
@@ -7,6 +7,9 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron": "^latest"
-  }
+    "bootstrap": "^5.3.3",
+    "electron": "^33.2.0"
+  },
+  "author": "pepemeister",
+  "license": "MIT"
 }
