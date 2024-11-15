@@ -2,7 +2,26 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-// Функция для создания окна
+let currentUser = null; // Переменная для хранения текущего пользователя
+
+// Путь к файлу для сохранения данных пользователей в проекте
+const userDataPath = path.join(__dirname, 'users.json');
+
+// Функция для чтения данных пользователей
+function readUserData() {
+  if (fs.existsSync(userDataPath)) {
+    const data = fs.readFileSync(userDataPath, 'utf8');
+    return JSON.parse(data);
+  }
+  return {};
+}
+
+// Функция для записи данных пользователей
+function writeUserData(data) {
+  fs.writeFileSync(userDataPath, JSON.stringify(data, null, 2));
+}
+
+// Создание окна приложения
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
@@ -17,32 +36,21 @@ function createWindow() {
   win.loadFile('index.html');
 }
 
-app.on('ready', createWindow);
+// Обработка событий приложения
+app.on('ready', () => {
+  app.commandLine.appendSwitch('disable-gpu'); // Отключение GPU для устранения ошибок
+  createWindow();
+});
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
+
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
-// Путь к файлу для сохранения данных пользователей
-const userDataPath = path.join(app.getPath('userData'), 'users.json');
-
-// Функция для чтения данных пользователей
-function readUserData() {
-  if (fs.existsSync(userDataPath)) {
-    const data = fs.readFileSync(userDataPath);
-    return JSON.parse(data);
-  }
-  return {};
-}
-
-// Функция для записи данных пользователей
-function writeUserData(data) {
-  fs.writeFileSync(userDataPath, JSON.stringify(data, null, 2));
-}
-
-// Обработчик регистрации пользователя
+// Регистрация событий IPC
 ipcMain.on('register-user', (event, userData) => {
   const users = readUserData();
   if (users[userData.email]) {
@@ -54,12 +62,18 @@ ipcMain.on('register-user', (event, userData) => {
   }
 });
 
-// Обработчик логина пользователя
 ipcMain.on('login-user', (event, userData) => {
   const users = readUserData();
   if (users[userData.email] && users[userData.email].password === userData.password) {
+    currentUser = userData.email;
     event.reply('login-success', 'Вход выполнен успешно!');
   } else {
     event.reply('login-failed', 'Неверный email или пароль.');
   }
 });
+
+ipcMain.on('logout-user', (event) => {
+  currentUser = null;
+  event.reply('logout-success', 'Вы успешно вышли из аккаунта.');
+});
+
