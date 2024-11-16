@@ -18,7 +18,7 @@
       color: #FF7315;
       background-color: #4b3832; /* Тёплый коричневый */
       padding: 0.8rem;
-    } 
+    }
     .navbar-brand {
       color: #fff8e7; /* Initial color */
       font-family: 'Poppins', sans-serif;
@@ -100,7 +100,7 @@
   </style>
   </head>
 <body>
-  <!-- Навигационная панель -->
+  <!-- Навигационная панель!! -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">ECG Monitoring</a>
@@ -128,7 +128,36 @@
       <p>No data available</p>
     </div>
   </div>
+  <div id="user-status-indicator" class="offline">Offline</div>
+  <div>
+      <button onclick="showForm('register')">Register</button>
+      <button onclick="showForm('login')">Login</button>
+      <button onclick="logoutUser()">Logout</button>
+  </div>
 
+  <!-- Регистрация -->
+  <div id="registerForm" class="modal">
+      <h2>Register</h2>
+      <input id="register-email" type="email" placeholder="Email">
+      <input id="register-password" type="password" placeholder="Password">
+      <button onclick="registerUser(event)">Submit</button>
+      <button onclick="closeForm('register')">Close</button>
+  </div>
+
+  <div id="loginForm" class="modal">
+      <h2>Login</h2>
+      <!-- Поля ввода -->
+      <form onsubmit="loginUser(event)">
+          <label for="login-email">Email:</label>
+          <input id="login-email" type="email" placeholder="Email" required>
+          <label for="login-password">Password:</label>
+          <input id="login-password" type="password" placeholder="Password" required>
+          <!-- Кнопка отправки -->
+          <button type="submit">Submit</button>
+      </form>
+      <!-- Кнопка закрытия -->
+      <button onclick="closeForm('login')">Close</button>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
