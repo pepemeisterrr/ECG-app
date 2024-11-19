@@ -1,163 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECG Monitoring App</title>
-  <!-- Подключение Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Кастомные стили -->
-  <style>
-    body {
-      background-color: #fff4e6; /* Основной фон */
-      font-family: 'Roboto', sans-serif;
-    }
-    .navbar {
-      color: #FF7315;
-      background-color: #4b3832; /* Тёплый коричневый */
-      padding: 0.8rem;
-    }
-    .navbar-brand {
-      color: #fff8e7; /* Initial color */
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 1.5rem;
-      text-decoration: none; /* Remove underline */
-    }
-
-    .navbar-brand:hover {
-      color: #D2FF72; /* Light cream color */
-      background-color: #4b3832; /* Red-brown */
-      border-color: #fff4e6; /* White border on hover */
-    }
-
-    .navbar-brand:active {
-      color: #D2FF72; /* Light text color when active */
-      background-color: #4b3832; /* Dark coffee color */
-      border-color: transparent; /* Same color as background */
-    }
-
-    .navbar-brand:focus {
-      outline: none; /* Remove default outline if desired */
-      color: #D2FF72; /* Keep text color the same */
-      background-color: #4b3832; /* Background remains consistent */
-      border-color: transparent; /* Без рамки при фокусе */
-      box-shadow: none; /* Slight zoom effect on focus */
-    }
-    .nav-link {
-      color: #fff8e7; /* Исходный цвет текста */
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      margin-right: 1rem;
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.5); /* Полупрозрачная рамка */
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.1); /* Лёгкий фон */
-      transition: color 0.3s ease, background-color 0.3s ease, transform 0.1s ease;
-    }
-    .nav-link:hover {
-      color: #fff4e6; /* Светлый кремовый */
-      background-color: #854442; /* Красновато-коричневый */
-      border-color: #fff4e6; /* Белая рамка при наведении */
-      transform: scale(1.05); /* Лёгкое увеличение */
-    }
-    .nav-link:active {
-      color: #D2FF72; /* Убедимся, что текст остаётся светлым при нажатии */
-      background-color: #3c2f2f; /* Тёмный кофейный */
-      border-color: #3c2f2f; /* Тот же цвет, что у фона кнопки */
-      transform: scale(0.95); /* Лёгкое сжатие при нажатии */
-    }
-    .nav-link:focus {
-    color: #fff4e6; /* Цвет текста остаётся светлым */
-    background-color: #3c2f2f; /* Тёмный кофейный фон */
-    border-color: #FF7315; /* Рамка в красновато-коричневом */
-    box-shadow: 0 0 10px #FF7315; /* Тень красного цвета */
-    transform: scale(1.05); /* Лёгкое увеличение при фокусе */
-    outline: none; /* Убираем стандартный обвод вокруг кнопки */
-    }
-    #ecg-canvas {
-      width: 100%;
-      height: 300px;
-      background-color: #be9b7b; /* Песочный оттенок */
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      color: #854442; /* Красновато-коричневый */
-      font-family: 'Roboto', sans-serif;
-      font-weight: 700; /* Жирный шрифт для заголовка */
-      font-size: 2rem; /* Увеличенный размер текста */
-    }
-    p {
-      color: #3c2f2f; /* Кофейный оттенок текста */
-    }
-    .container {
-      margin-top: 2rem;
-    }
-  </style>
-  </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECG Monitoring App</title>
+    <!-- Подключение Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff4e6;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar {
+            color: #FF7315;
+            background-color: #4b3832;
+            padding: 0.8rem;
+        }
+        .navbar-brand {
+            color: #fff8e7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .navbar-brand:hover {
+            color: #D2FF72;
+        }
+        .nav-link {
+            color: #fff8e7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            margin-right: 1rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #fff4e6;
+            background-color: #ff9856;
+        }
+        .tab-content {
+            margin-top: 2rem;
+        }
+        .form-control {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: #4b3832;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #FF7315;
+        }
+    </style>
+</head>
 <body>
-  <!-- Навигационная панель!! -->
-  <nav class="navbar navbar-expand-lg">
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ECG Monitoring</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showTab('realtime')">Real-time Monitoring</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="showTab('history')">History</a>
-          </li>
-        </ul>
-      </div>
+        <a class="navbar-brand" href="#">ECG Monitoring</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('realtime')">Real-time Monitoring</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('history')">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('register')">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('login')">Login</a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </nav>
+</nav>
 
-  <!-- Контент -->
-  <div class="container text-center">
+<!-- Основной контент -->
+<div class="container">
     <div id="realtime" class="tab-content">
-      <h2>Real-time ECG</h2>
-      <canvas id="ecg-canvas" class="mt-3 shadow-sm"></canvas>
+        <h2 class="text-center mt-3">Real-time ECG</h2>
+        <img src="https://sun9-51.userapi.com/impg/iXrnnSbEr6RBZQtqScyEjjdveHnRk4cehn2tDQ/jrQUXZ7mtIs.jpg?size=1620x2160&quality=95&sign=37344a73c72a7d3535b74d077f016e31&type=album" width="400"
+             height="341"/>
+
+        <!--        <canvas id="ecg-canvas" class="mt-3 shadow-sm w-100" style="height: 300px;"></canvas>-->
     </div>
     <div id="history" class="tab-content" style="display:none;">
-      <h2>Saved ECG Data</h2>
-      <p>No data available</p>
+        <h2 class="text-center mt-3">Saved ECG Data</h2>
+        <p class="text-center">No data available</p>
     </div>
-  </div>
-  <div id="user-status-indicator" class="offline">Offline</div>
-  <div>
-      <button onclick="showForm('register')">Register</button>
-      <button onclick="showForm('login')">Login</button>
-      <button onclick="logoutUser()">Logout</button>
-  </div>
+    <div id="register" class="tab-content" style="display:none;">
+        <h2 class="text-center mt-3">Register</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <input id="register-email" type="email" placeholder="Email" class="form-control">
+                <input id="register-password" type="password" placeholder="Password" class="form-control">
+                <button class="btn btn-primary mt-2" onclick="registerUser(event)">Register</button>
+            </div>
+        </div>
+    </div>
+    <div id="login" class="tab-content" style="display:none;">
+        <h2 class="text-center mt-3">Login</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form onsubmit="loginUser(event)">
+                    <input id="login-email" type="email" placeholder="Email" class="form-control">
+                    <input id="login-password" type="password" placeholder="Password" class="form-control">
+                    <button class="btn btn-primary mt-2" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Регистрация -->
-  <div id="registerForm" class="modal">
-      <h2>Register</h2>
-      <input id="register-email" type="email" placeholder="Email">
-      <input id="register-password" type="password" placeholder="Password">
-      <button onclick="registerUser(event)">Submit</button>
-      <button onclick="closeForm('register')">Close</button>
-  </div>
-
-  <div id="loginForm" class="modal">
-      <h2>Login</h2>
-      <!-- Поля ввода -->
-      <form onsubmit="loginUser(event)">
-          <label for="login-email">Email:</label>
-          <input id="login-email" type="email" placeholder="Email" required>
-          <label for="login-password">Password:</label>
-          <input id="login-password" type="password" placeholder="Password" required>
-          <!-- Кнопка отправки -->
-          <button type="submit">Submit</button>
-      </form>
-      <!-- Кнопка закрытия -->
-      <button onclick="closeForm('login')">Close</button>
-  </div>
-  <script src="app.js"></script>
+<script>
+    function showTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.style.display = 'none');
+        document.getElementById(tabId).style.display = 'block';
+    }
+</script>
+<script src="./app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
