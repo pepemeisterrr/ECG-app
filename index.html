@@ -1,59 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECG Monitoring App</title>
-  <!-- Подключение Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Кастомные стили -->
-  <style>
-    /* Градиент для заголовка */
-    .text-gradient {
-      background: linear-gradient(135deg, #ff8989, #a9ff68);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    /* Кнопки с градиентом */
-    .btn-gradient {
-      background: linear-gradient(135deg, #ff8989, #a9ff68);
-      color: white;
-      border: none;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 20px;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn-gradient:hover {
-      background: linear-gradient(135deg, #a9ff68, #ff8989);
-      transform: scale(1.05);
-    }
-    /* Настройка канваса для графика */
-    #ecg-canvas {
-      width: 100%;
-      height: 300px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECG Monitoring App</title>
+    <!-- Подключение Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff4e6;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navbar {
+            color: #FF7315;
+            background-color: #4b3832;
+            padding: 0.8rem;
+        }
+        .navbar-brand {
+            color: #fff8e7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .navbar-brand:hover {
+            color: #D2FF72;
+        }
+        .nav-link {
+            color: #fff8e7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            margin-right: 1rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #fff4e6;
+            background-color: #ff9856;
+        }
+        .tab-content {
+            margin-top: 2rem;
+        }
+        .form-control {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: #4b3832;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #FF7315;
+        }
+    </style>
 </head>
 <body>
-  <div class="container text-center mt-5 p-4 bg-light rounded shadow">
-    <h1 class="display-4 text-gradient">ECG Monitoring</h1>
-    <div class="d-flex justify-content-center mb-4">
-      <button class="btn btn-gradient me-2" onclick="showTab('realtime')">Real-time Monitoring</button>
-      <button class="btn btn-gradient" onclick="showTab('history')">History</button>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ECG Monitoring</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('realtime')">Real-time Monitoring</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('history')">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('register')">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('login')">Login</a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+
+<!-- Основной контент -->
+<div class="container">
     <div id="realtime" class="tab-content">
-      <h2>Real-time ECG</h2>
-      <canvas id="ecg-canvas" class="mt-3 shadow-sm"></canvas>
+        <h2 class="text-center mt-3">Real-time ECG</h2>
+        <img src="https://sun9-51.userapi.com/impg/iXrnnSbEr6RBZQtqScyEjjdveHnRk4cehn2tDQ/jrQUXZ7mtIs.jpg?size=1620x2160&quality=95&sign=37344a73c72a7d3535b74d077f016e31&type=album" width="400"
+             height="341"/>
+
+        <!--        <canvas id="ecg-canvas" class="mt-3 shadow-sm w-100" style="height: 300px;"></canvas>-->
     </div>
     <div id="history" class="tab-content" style="display:none;">
-      <h2>Saved ECG Data</h2>
-      <p>No data available</p>
+        <h2 class="text-center mt-3">Saved ECG Data</h2>
+        <p class="text-center">No data available</p>
     </div>
-  </div>
-  <script src="app.js"></script>
+    <div id="register" class="tab-content" style="display:none;">
+        <h2 class="text-center mt-3">Register</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <input id="register-email" type="email" placeholder="Email" class="form-control">
+                <input id="register-password" type="password" placeholder="Password" class="form-control">
+                <button class="btn btn-primary mt-2" onclick="registerUser(event)">Register</button>
+            </div>
+        </div>
+    </div>
+    <div id="login" class="tab-content" style="display:none;">
+        <h2 class="text-center mt-3">Login</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form onsubmit="loginUser(event)">
+                    <input id="login-email" type="email" placeholder="Email" class="form-control">
+                    <input id="login-password" type="password" placeholder="Password" class="form-control">
+                    <button class="btn btn-primary mt-2" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.style.display = 'none');
+        document.getElementById(tabId).style.display = 'block';
+    }
+</script>
+<script src="./app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
