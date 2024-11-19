@@ -1,4 +1,3 @@
-// Привет
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
@@ -11,15 +10,25 @@ const userDataPath = path.join(__dirname, 'users.json');
 // Функция для чтения данных пользователей
 function readUserData() {
   if (fs.existsSync(userDataPath)) {
-    const data = fs.readFileSync(userDataPath, 'utf8');
-    return JSON.parse(data);
+    try {
+      const data = fs.readFileSync(userDataPath, 'utf8');
+      return JSON.parse(data);
+    } catch (err) {
+      console.error('Error reading users.json:', err);
+      return {};
+    }
   }
   return {};
 }
 
 // Функция для записи данных пользователей
 function writeUserData(data) {
-  fs.writeFileSync(userDataPath, JSON.stringify(data, null, 2));
+  try {
+    fs.writeFileSync(userDataPath, JSON.stringify(data, null, 2));
+    console.log(`Users data written to ${userDataPath}`);
+  } catch (error) {
+    console.error('Failed to write user data:', error);
+  }
 }
 
 // Создание окна приложения
@@ -39,7 +48,6 @@ function createWindow() {
 
 // Обработка событий приложения
 app.on('ready', () => {
-  app.commandLine.appendSwitch('disable-gpu'); // Отключение GPU для устранения ошибок
   createWindow();
 });
 
@@ -65,10 +73,14 @@ ipcMain.on('register-user', (event, userData) => {
 
 ipcMain.on('login-user', (event, userData) => {
   const users = readUserData();
+  console.log('Users loaded:', users);
+
   if (users[userData.email] && users[userData.email].password === userData.password) {
     currentUser = userData.email;
+    console.log('Login success:', currentUser);
     event.reply('login-success', 'Вход выполнен успешно!');
   } else {
+    console.log('Login failed: Invalid credentials');
     event.reply('login-failed', 'Неверный email или пароль.');
   }
 });
@@ -77,4 +89,3 @@ ipcMain.on('logout-user', (event) => {
   currentUser = null;
   event.reply('logout-success', 'Вы успешно вышли из аккаунта.');
 });
-

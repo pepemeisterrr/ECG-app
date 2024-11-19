@@ -6,8 +6,3 @@ contextBridge.exposeInMainWorld('electronAPI', {
     logoutUser: () => ipcRenderer.send('logout-user'),
     receive: (channel, func) => ipcRenderer.on(channel, (event, ...args) => func(...args)),
 });
-
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('Preload script loaded');
-});
-//привет
