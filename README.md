@@ -1,12 +1,16 @@
 # HOW TO GIT
 
 ## Стэк разработки
-# Tauri + React + Vite + Tailwind CSS
+# Tauri + React + Vite + Tailwind CSS (пакетные менеджеры npm + cargo)
 # Необходимые Компоненты
 Официальная документация: https://tauri.app/start/prerequisites/
 - Microsoft C++ Build Tools (как в документации) -> https://visualstudio.microsoft.com/visual-cpp-build-tools/
 - Rust -> https://www.rust-lang.org/tools/install
 - Node JS ранее был установлен
+# Команды - описание
+cargo tauri dev - сборка (build) и запуск проги, код можно редактировать, не закрывая прогу, измененния и ошибки будут изображаться
+npm install - при добавлении новых зависимостей в package.json установка всех пакетов
+
 ## Основы
 Почти всегда в проекте присутствуют следующие ветки (что-то вроде версий): MAIN (Основная, стабильная, всегда работающая версия, которую использует пользователь) и Secondary (в нашем случае Reserved), в которую мы заливаем свой код (уже проверенный) и которую можно (но не нужно) ломать.
 
