@@ -2,6 +2,11 @@
 
 ## Стэк разработки
 # Tauri + React + Vite + Tailwind CSS
+# Необходимые Компоненты
+Официальная документация: https://tauri.app/start/prerequisites/
+- Microsoft C++ Build Tools (как в документации) -> https://visualstudio.microsoft.com/visual-cpp-build-tools/
+- Rust -> https://www.rust-lang.org/tools/install
+- Node JS ранее был установлен
 ## Основы
 Почти всегда в проекте присутствуют следующие ветки (что-то вроде версий): MAIN (Основная, стабильная, всегда работающая версия, которую использует пользователь) и Secondary (в нашем случае Reserved), в которую мы заливаем свой код (уже проверенный) и которую можно (но не нужно) ломать.
 
