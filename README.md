@@ -24,7 +24,7 @@
 - **Git branch** (Узнать вашу нынешнюю ветку/узнать все доступные ветки)
 - **Git branch** ＜new_branch_name＞ (Создать новую ветку)
 - **Git checkout** ＜branchname＞ (Переключиться на ветку (изменения не сохраняются))
-### :trollface:***ЭТО БАЗА ПО КОМАНДАМ, ЧТОБЫ УЗНАТЬ БОЛЬШЕ НЕОБХОДИМО ПРИОБРЕСТИ ПОДПИСКУ ЗА 299руб./мес.*** :trollface::+1:
+### :trollface:***ЭТО БАЗА ПО КОМАНДАМ, ЧТОБЫ УЗНАТЬ БОЛЬШЕ НЕОБХОДИМО ПРИОБРЕСТИ ПОДПИСКУ ЗА three hundred $$$$$$$$*** :trollface::+1:
 
 ## ПРАВИЛА ХОРОШЕГО ПОВЕДЕНИЯ :shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit::shipit:
 - ДАВАТЬ КОММИТАМ ТАКОЕ НАЗВАНИЕ, ЧТОБЫ БЫЛО ПОНЯТНО ЧТО ВЫ ЗАКОММИТИЛИ (НЕТ: git commit Zalupa :trollface: |||| ДА: git commit user_authentification/git commit fix_user_authentification :+1:)
