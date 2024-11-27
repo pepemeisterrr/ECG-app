@@ -29,10 +29,10 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-
+       
         <div className="border-t flex p-3">
-          <img
-            src="https://ui-avatars.com/api/?name=Sanya+Pivozavrov&background=ede9fe&color=a78bfa&bold=true"
+          <img 
+            src="https://ui-avatars.com/api/?name=Ryan+Gosling&background=ede9fe&color=a78bfa&bold=true"
             alt=""
             className="w-10 h-10 rounded-md"
           />
@@ -43,10 +43,10 @@ export default function Sidebar({ children }) {
           `}
           >
             <div className="leading-4">
-              <h4 className="font-semibold">Sanya Pivozavrov</h4>
-              <span className="text-xs text-gray-600">zalupa.online</span>
+              <h4 className="font-semibold">Ryan Gosling</h4>
+              <span className="text-xs text-gray-600">sanya@pivozarv.com</span>
             </div>
-            <MoreVertical size={20} />
+            <MoreVertical size={20} className="cursor-pointer" />
           </div>
         </div>
       </nav>
