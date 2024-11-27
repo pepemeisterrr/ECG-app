@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr'
 
 const host = process.env.TAURI_DEV_HOST;
 
@@ -27,5 +28,5 @@ export default defineConfig({
       // produce sourcemaps for debug builds
       sourcemap: !!process.env.TAURI_ENV_DEBUG,
     },
-  plugins: [react()],
+  plugins: [react(), svgr()],
 })

@@ -6,13 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-
+      fontFamily: {
+        sans: ['Sora', 'sans-serif']
+      },
       colors: {
-        primary: "#e30b5d",
-        secondary: "#250be3",
-        tertiary: "#0be391",
-        quaternary: "#c9e30b",
-        boulder: "#747679",
+        grviolet: "#ef32d9",
+        grblue: "#89fffd",
+
       },
       container: {
         center: true,
@@ -23,6 +23,7 @@ export default {
           xl: "5rem",
           "2xl": "6rem",
         },
+        
       },
     },
   },
