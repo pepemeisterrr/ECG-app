@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Sora', 'sans-serif']
+        sans: ['Raleway', 'sans-serif']
       },
       colors: {
         grviolet: "#ef32d9",

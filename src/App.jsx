@@ -40,7 +40,7 @@ function Users() {
         src="https://sun9-72.userapi.com/impg/KsWXGvkp8JHlN6wF3prxbPz_yXUeFUvP4aVErA/75o0LiTS8Z0.jpg?size=604x604&quality=95&sign=81d759d9cd34c75ea52495a8417d191a&type=album"
         className="py-5"
       />
-    </div>
+      </div>
   )
 }
 
@@ -95,7 +95,7 @@ function Help() {
         Проблемы и ошибки <br/>
       </span>
       <span>
-        1. Шрифт без поддержки русского <br/>
+        1. Необходимо настроить шрифты<br/>
         2. ... 
       </span>
     </div>
