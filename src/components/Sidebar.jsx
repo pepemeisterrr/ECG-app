@@ -63,7 +63,7 @@ export function SidebarItem({ icon, text, to, alert }) {
         to={to}
         className={({ isActive }) =>
           `relative flex items-center py-2 px-3 my-1
-          font-medium rounded-md cursor-pointer transition-colors group
+          font-bold rounded-md cursor-pointer transition-colors group
           ${
             isActive
               ? "bg-gradient-to-tr from-teal-100 to-violet-200 text-violet-800"
