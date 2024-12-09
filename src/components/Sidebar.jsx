@@ -1,22 +1,26 @@
 import { NavLink } from "react-router-dom";
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
-import { useContext, createContext, useState } from "react"
+import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
+import { useContext, createContext, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { AuthModal } from "./AuthModal";
 
-const SidebarContext = createContext()
+const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true)
-  
+  const [expanded, setExpanded] = useState(true);
+  const { user, logout } = useAuth();
+  const [isModalOpen, setModalOpen] = useState(false);
+
   return (
     <aside className="h-screen">
-      <nav className="h-full w-fit flex flex-col bg-white border-r shadow-sm"> 
+      <nav className="h-full w-fit flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
             src="https://img.logoipsum.com/286.svg"
             className={`overflow-hidden transition-all ${
               expanded ? "w-36" : "w-0"
             }`}
-            alt=""
+            alt="Logo"
           />
           <button
             onClick={() => setExpanded((curr) => !curr)}
@@ -29,29 +33,44 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-       
-        <div className="border-t flex p-3">
-          <img 
-            src="https://ui-avatars.com/api/?name=Ryan+Gosling&background=ede9fe&color=a78bfa&bold=true"
-            alt=""
+
+        <div className="border-t flex p-3 items-center">
+          <img
+            src="https://ui-avatars.com/api/?name=User&background=ede9fe&color=a78bfa&bold=true"
+            alt="User Avatar"
             className="w-10 h-10 rounded-md"
           />
           <div
-            className={`
-              flex justify-between items-center
-              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
-          `}
+            className={`flex justify-between items-center overflow-hidden transition-all ${
+              expanded ? "w-52 ml-3" : "w-0"
+            }`}
           >
-            <div className="leading-4">
-              <h4 className="font-semibold">Ryan Gosling</h4>
-              <span className="text-xs text-gray-600">sanya@pivozarv.com</span>
-            </div>
+            {user ? (
+              <div className="leading-4">
+                <h4 className="font-semibold">{user.email}</h4>
+                <button
+                  onClick={logout}
+                  className="text-xs text-red-500 hover:underline"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setModalOpen(true)}
+                className="text-xs text-blue-500 hover:underline"
+              >
+                Login/Register
+              </button>
+            )}
             <MoreVertical size={20} className="cursor-pointer" />
           </div>
         </div>
       </nav>
+
+      {isModalOpen && <AuthModal onClose={() => setModalOpen(false)} />}
     </aside>
-  )
+  );
 }
 
 export function SidebarItem({ icon, text, to, alert }) {
@@ -62,9 +81,7 @@ export function SidebarItem({ icon, text, to, alert }) {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `relative flex items-center py-2 px-3 my-1
-          font-bold rounded-md cursor-pointer transition-colors group
-          ${
+          `relative flex items-center py-2 px-3 my-1 font-bold rounded-md cursor-pointer transition-colors group ${
             isActive
               ? "bg-gradient-to-tr from-teal-100 to-violet-200 text-violet-800"
               : "hover:bg-violet-50 text-gray-600"
@@ -85,21 +102,7 @@ export function SidebarItem({ icon, text, to, alert }) {
               expanded ? "" : "top-2"
             }`}
           />
-        
         )}
-
-        {!expanded && (
-          <div
-            className={`
-            absolute left-full rounded-md px-2 py-1 ml-6
-            bg-violet-100 text-violet-800 text-sm
-            invisible opacity-20 -translate-x-3 transition-all
-            group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
-        `}
-          >
-            {text}
-          </div>
-      )}
       </NavLink>
     </li>
   );
