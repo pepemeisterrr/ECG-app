@@ -9,15 +9,13 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
+import Graph from "./components/Graph"
+
+import React from "react";
 
 function Dashboard() {
   return (
-    <div className="py-2 px-3 my-1">
-      <span className="overflow-hidden transition-all font-semibold text-xl">
-        ECG monitoring<br/>
-        Тут будет график
-      </span>
-    </div>
+    <Graph/>
   )
 }
 
@@ -77,29 +75,27 @@ function Billings() {
 }
 
 function SettingsPage() {
-  return <div>Settings Content</div>;
+  return (
+    <div className="flex justify-center items-center bg-gray-900 h-screen">
+      <iframe src="https://vk.com/video_ext.php?oid=236589834&id=456239450&hd=1&autoplay=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+    </div>
+  );
 }
 
 function Help() {
   return (
-    <div>
-      <span>
-        Примерный план:<br/>
-        0. Парсинг данных с ЭКГ платы <br/>
-        1. Real-time график <br/>
-        2. Сохранение данных <br/>
-        3. Авторизация пользователей <br/>
-        4. Анализ данных <br/>
-      </span>
-      <span className="overflow-hidden transition-all font-semibold text-xl">
-        Проблемы и ошибки <br/>
-      </span>
-      <span>
-        1. Необходимо настроить шрифты<br/>
-        2. ... 
-      </span>
+    <div className="flex flex-col justify-center items-center bg-gray-900 h-screen text-white">
+      <p className="mb-4">Click below to watch the video:</p>
+      <a
+        href="https://vk.com/video-205643632_456240226"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg"
+      >
+        Watch Video
+      </a>
     </div>
-  )
+  );
 }
 
 export default function App() {
