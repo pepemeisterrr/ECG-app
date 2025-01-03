@@ -9,18 +9,13 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
-import ReactPlayer from "react-player";
+import Graph from "./components/Graph"
 
 import React from "react";
 
 function Dashboard() {
   return (
-    <div className="py-2 px-3 my-1">
-      <span className="overflow-hidden transition-all font-semibold text-xl">
-        ECG monitoring<br/>
-        Тут будет график
-      </span>
-    </div>
+    <Graph/>
   )
 }
 
