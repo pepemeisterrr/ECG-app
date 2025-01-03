@@ -45,7 +45,7 @@ function Graph() {
           const nextIndex = Math.min(index + 1, ecgData.length);
           const newData = [...prev, ...ecgData.slice(index, nextIndex)];
           index = nextIndex;
-          return newData.slice(-300);
+          return newData.slice(-375);
         });
       }, 8);
     }
