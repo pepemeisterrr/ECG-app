@@ -10,6 +10,8 @@ import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
 import Graph from "./components/Graph"
+import FAQ from "./components/FAQ"
+import Reg from "./components/Reg"
 
 import React from "react";
 
@@ -32,13 +34,14 @@ function Statistics() {
 
 function Users() {
   return (
-    <div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
+    <Reg/>
+    /*<div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
       <span className="overflow-hidden transition-all font-bold text-xl">Literally me</span>
       <img
         src="https://sun9-72.userapi.com/impg/KsWXGvkp8JHlN6wF3prxbPz_yXUeFUvP4aVErA/75o0LiTS8Z0.jpg?size=604x604&quality=95&sign=81d759d9cd34c75ea52495a8417d191a&type=album"
         className="py-5"
       />
-      </div>
+      </div>*/
   )
 }
 
@@ -84,7 +87,9 @@ function SettingsPage() {
 
 function Help() {
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-900 h-screen text-white">
+    <FAQ/>
+
+    /*<div className="flex flex-col justify-center items-center bg-gray-900 h-screen text-white">
       <p className="mb-4">Click below to watch the video:</p>
       <a
         href="https://vk.com/video-205643632_456240226"
@@ -94,7 +99,7 @@ function Help() {
       >
         Watch Video
       </a>
-    </div>
+    </div>*/
   );
 }
 
