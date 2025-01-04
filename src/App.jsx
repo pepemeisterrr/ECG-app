@@ -9,6 +9,7 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
+
 import Graph from "./components/Graph"
 import FAQ from "./components/FAQ"
 import Reg from "./components/Reg"
@@ -19,6 +20,7 @@ function Dashboard() {
   return (
     <Graph/>
   )
+
 }
 
 function Statistics() {
@@ -26,6 +28,7 @@ function Statistics() {
 }
 
 function Users() {
+
   return (
     <Reg/>
     /*<div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
@@ -36,6 +39,7 @@ function Users() {
       />
       </div>*/
   )
+
 }
 
 function GithubPage() {
@@ -59,6 +63,7 @@ function SettingsPage() {
 }
 
 function Help() {
+
   return (
     <FAQ/>
 
@@ -74,6 +79,7 @@ function Help() {
       </a>
     </div>*/
   );
+
 }
 
 export default function App() {
