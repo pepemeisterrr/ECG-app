@@ -9,8 +9,18 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
+
+import Graph from "./components/Graph"
+import FAQ from "./components/FAQ"
+import Reg from "./components/Reg"
+
+import React from "react";
+
 function Dashboard() {
-  return <div>Dashboard Content</div>;
+  return (
+    <Graph/>
+  )
+
 }
 
 function Statistics() {
@@ -18,7 +28,18 @@ function Statistics() {
 }
 
 function Users() {
-  return <div>Users Content</div>;
+
+  return (
+    <Reg/>
+    /*<div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
+      <span className="overflow-hidden transition-all font-bold text-xl">Literally me</span>
+      <img
+        src="https://sun9-72.userapi.com/impg/KsWXGvkp8JHlN6wF3prxbPz_yXUeFUvP4aVErA/75o0LiTS8Z0.jpg?size=604x604&quality=95&sign=81d759d9cd34c75ea52495a8417d191a&type=album"
+        className="py-5"
+      />
+      </div>*/
+  )
+
 }
 
 function GithubPage() {
@@ -34,11 +55,31 @@ function Billings() {
 }
 
 function SettingsPage() {
-  return <div>Settings Content</div>;
+  return (
+    <div className="flex justify-center items-center bg-gray-900 h-screen">
+      <iframe src="https://vk.com/video_ext.php?oid=236589834&id=456239450&hd=1&autoplay=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+    </div>
+  );
 }
 
 function Help() {
-  return <div>Help Content</div>;
+
+  return (
+    <FAQ/>
+
+    /*<div className="flex flex-col justify-center items-center bg-gray-900 h-screen text-white">
+      <p className="mb-4">Click below to watch the video:</p>
+      <a
+        href="https://vk.com/video-205643632_456240226"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg"
+      >
+        Watch Video
+      </a>
+    </div>*/
+  );
+
 }
 
 export default function App() {
