@@ -12,9 +12,11 @@ export default function Sidebar({ children }) {
       <nav className="h-full w-fit flex flex-col bg-white border-r shadow-sm"> 
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
-            src="https://img.logoipsum.com/286.svg"
+            //src="https://img.logoipsum.com/286.svg"
+            src="https://cdn-icons-png.flaticon.com/512/384/384174.png"
+            //src="https://cdn-icons-png.flaticon.com/512/17190/17190068.png"
             className={`overflow-hidden transition-all ${
-              expanded ? "w-36" : "w-0"
+              expanded ? "w-20" : "w-0"
             }`}
             alt=""
           />

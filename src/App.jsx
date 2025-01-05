@@ -13,6 +13,8 @@ import Graph from "./components/Graph"
 import FAQ from "./components/FAQ"
 import Reg from "./components/Reg"
 
+import Data from "./components/Data"
+
 import React from "react";
 
 function Dashboard() {
@@ -23,12 +25,13 @@ function Dashboard() {
 
 function Statistics() {
   return (
-    <div className="py-2 px-3 my-1">
+    <Data/>
+    /*<div className="py-2 px-3 my-1">
       <span className="overflow-hidden transition-all font-semibold text-xl">
         ECG Data<br/>
         Тут будет история данных
       </span>
-    </div>
+    </div>*/
   )
 }
 
