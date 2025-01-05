@@ -9,6 +9,7 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
+
 import Graph from "./components/Graph"
 import FAQ from "./components/FAQ"
 import Reg from "./components/Reg"
@@ -21,6 +22,7 @@ function Dashboard() {
   return (
     <Graph/>
   )
+
 }
 
 function Statistics() {
@@ -36,6 +38,7 @@ function Statistics() {
 }
 
 function Users() {
+
   return (
     <Reg/>
     /*<div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
@@ -46,38 +49,19 @@ function Users() {
       />
       </div>*/
   )
+
 }
 
 function GithubPage() {
-  return <div className="py-2 px-3 my-1">
-    <span className="overflow-hidden transition-all font-semibold text-xl">Here is the <a href="https://github.com/pepemeisterrr/ECG-app" target="_blank" rel="noopener noreferrer" className="text-sky-500 font-semibold hover:text-orange-600 underline">
-      GitHub repository
-      </a> for the ECG app.</span>
-    <img
-      src="https://sun9-28.userapi.com/impg/nnhBsh3xvDXJ80iaAA5lEVnkOoZBu6n8X7aauQ/hQJjXE_0AmE.jpg?size=820x780&quality=96&sign=fdb5732484f4e261c5fc7701ab1985c4&type=album"
-      className="py-5"
-    />
-  </div>;
+  return <div>Github Page</div>;
 }
 
 function Orders() {
-  return (
-     <div>Бесполезный раздел #1
-  <img
-    src="https://sun1-21.userapi.com/impg/wqqmG3QfZsv7PBQ6_cjJeiuCxVKM1eXcBVMqXA/gw8kcLBUI-o.jpg?size=1200x1200&quality=96&sign=7a06046d3a0f9db9d8362d1e61fa8199&type=album"
-    className="py-5"
-  />
-  </div>
-  )
+  return <div>Orders Content</div>;
 }
 
 function Billings() {
-  return <div>Бесполезный раздел #2
-  <img
-    src="https://sun1-90.userapi.com/impg/KJ8gAnkE9DnSHLaDmUg9Xts9G7kFbd280AorNA/-EuDeS2GiBE.jpg?size=1280x1180&quality=96&sign=a22ba3fe44472e104a0d37f649baa4ac&type=album"
-    className="py-5"
-  />
-  </div>;
+  return <div>Billings Content</div>;
 }
 
 function SettingsPage() {
@@ -89,6 +73,7 @@ function SettingsPage() {
 }
 
 function Help() {
+
   return (
     <FAQ/>
 
@@ -104,14 +89,15 @@ function Help() {
       </a>
     </div>*/
   );
+
 }
 
 export default function App() {
   const routes = [
     { path: "/dashboard", icon: <Activity size={20} />, text: "Dashboard", alert: false },
-    { path: "/statistics", icon: <ChartArea size={20} />, text: "Statistics", active: true },
+    { path: "/statistics", icon: <ChartArea size={20} />, text: "Statistics", alert: false },
     { path: "/users", icon: <UserCircle size={20} />, text: "Users", alert: false },
-    { path: "/github", icon: <GithubIcon className="w-5 h-5" size={20} />, text: "Github", alert: false },
+    { path: "/github", icon: <GithubIcon className="w-5 h-5" />, text: "Github", alert: false },
     { path: "/orders", icon: <Package size={20} />, text: "Orders", alert: true },
     { path: "/billings", icon: <Receipt size={20} />, text: "Billings", alert: false },
     { path: "/settings", icon: <Settings size={20} />, text: "Settings", alert: false },
@@ -123,13 +109,7 @@ export default function App() {
       <main className="App flex">
         <Sidebar>
           {routes.map(({ path, icon, text, alert }) => (
-            <SidebarItem
-              key={path}
-              icon={icon}
-              text={text}
-              alert={alert}
-              to={path}
-            />
+            <SidebarItem key={path} icon={icon} text={text} alert={alert} to={path} />
           ))}
         </Sidebar>
         <div className="flex-1 p-4">
