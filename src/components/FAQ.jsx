@@ -22,7 +22,7 @@ function FAQItem({ question, answer }) {
     </div>
   );
 }
-
+// а
 function FAQ({ items }) {
   return (
     <div className="max-w-xl mx-auto">
