@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tauri-apps/api": "^2.2.0",
+    "@tauri-apps/cli": "^2.2.2",
     "chart.js": "^4.4.7",
     "framer-motion": "^11.11.17",
     "lucide-react": "^0.460.0",
