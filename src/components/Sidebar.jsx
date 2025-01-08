@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { useContext, createContext, useState } from "react"
-
+import { useUser } from "./UserContext";
 const SidebarContext = createContext()
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true)
+  const { user } = useUser();
+  const [expanded, setExpanded] = useState(true);
   
   return (
     <aside className="h-screen">
@@ -27,12 +28,14 @@ export default function Sidebar({ children }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className="flex-1 px-3">{children}</ul>
+          <ul className="flex-1 px-3">
+            {children}
+          </ul>
         </SidebarContext.Provider>
        
         <div className="border-t flex p-3">
           <img 
-            src="https://ui-avatars.com/api/?name=Ryan+Gosling&background=ede9fe&color=a78bfa&bold=true"
+            src={`https://ui-avatars.com/api/?name=${user.username}&background=ede9fe&color=a78bfa&bold=true`}
             alt=""
             className="w-10 h-10 rounded-md"
           />
@@ -43,15 +46,15 @@ export default function Sidebar({ children }) {
           `}
           >
             <div className="leading-4">
-              <h4 className="font-semibold">Ryan Gosling</h4>
-              <span className="text-xs text-gray-600">sanya@pivozarv.com</span>
+              <h4 className="font-semibold">{user.username}</h4>
+              <span className="text-xs text-gray-600">{user.email}</span>
             </div>
             <MoreVertical size={20} className="cursor-pointer" />
           </div>
         </div>
       </nav>
     </aside>
-  )
+  );
 }
 
 export function SidebarItem({ icon, text, to, alert }) {

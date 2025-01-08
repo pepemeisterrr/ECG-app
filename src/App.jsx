@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { ChartArea, Activity, LifeBuoy, Package, Receipt, Settings, UserCircle } from "lucide-react";
 import GithubIcon from "./assets/github.svg?react";
+import { UserProvider } from "./components/UserContext";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 import UserForm from './components/UserForm';
@@ -85,6 +86,7 @@ export default function App() {
   ];
 
   return (
+    <UserProvider>
     <Router>
       <main className="App flex">
         <Sidebar>
@@ -107,5 +109,6 @@ export default function App() {
         </div>
       </main>
     </Router>
+    </UserProvider>
   );
 }
