@@ -1,4 +1,3 @@
-import { invoke } from '@tauri-apps/api/core';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,24 +12,18 @@ import { SidebarItem } from "./components/Sidebar";
 import UserForm from './components/UserForm';
 import Graph from "./components/Graph"
 import FAQ from "./components/FAQ"
+import Data from "./components/Data"
 import React, { useState } from "react";
 
 function Dashboard() {
   return (
     <Graph/>
   )
-
 }
 
 function Statistics() {
   return (
     <Data/>
-    /*<div className="py-2 px-3 my-1">
-      <span className="overflow-hidden transition-all font-semibold text-xl">
-        ECG Data<br/>
-        Тут будет история данных
-      </span>
-    </div>*/
   )
 }
 
@@ -39,7 +32,6 @@ function Users() {
     <UserForm/>
   )
 }
-
 
 function GithubPage() {
   return <div>Github Page</div>;
@@ -54,31 +46,13 @@ function Billings() {
 }
 
 function SettingsPage() {
-  return (
-    <div className="flex justify-center items-center bg-gray-900 h-screen">
-      <iframe src="https://vk.com/video_ext.php?oid=236589834&id=456239450&hd=1&autoplay=1" width="640" height="360" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
-    </div>
-  );
+  return <div>Settings</div>;
 }
 
 function Help() {
-
   return (
     <FAQ/>
-
-    /*<div className="flex flex-col justify-center items-center bg-gray-900 h-screen text-white">
-      <p className="mb-4">Click below to watch the video:</p>
-      <a
-        href="https://vk.com/video-205643632_456240226"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg"
-      >
-        Watch Video
-      </a>
-    </div>*/
-  );
-
+  )
 }
 
 export default function App() {

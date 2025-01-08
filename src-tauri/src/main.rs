@@ -7,7 +7,6 @@ use std::fs;
 use std::path::Path;
 use tauri::command;
 use serde::{Deserialize, Serialize};
-use serde_json::json;
 
 // Структура для регистрации (username, email, password)
 #[derive(Deserialize, Serialize, Clone)]
