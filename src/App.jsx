@@ -22,7 +22,15 @@ function Dashboard() {
 }
 
 function Statistics() {
-  return <div>Statistics Content</div>;
+  return (
+    <Data/>
+    /*<div className="py-2 px-3 my-1">
+      <span className="overflow-hidden transition-all font-semibold text-xl">
+        ECG Data<br/>
+        Тут будет история данных
+      </span>
+    </div>*/
+  )
 }
 
 function Users() {
