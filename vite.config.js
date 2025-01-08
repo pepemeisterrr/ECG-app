@@ -28,5 +28,9 @@ export default defineConfig({
       // produce sourcemaps for debug builds
       sourcemap: !!process.env.TAURI_ENV_DEBUG,
     },
-  plugins: [react(), svgr()],
+    plugins: [react(), svgr()],
+    resolve: {
+    alias: {
+    },
+  },
 })

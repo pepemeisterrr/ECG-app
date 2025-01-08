@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/core';
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,12 +10,9 @@ import GithubIcon from "./assets/github.svg?react";
 import Sidebar from "./components/Sidebar";
 import { SidebarItem } from "./components/Sidebar";
 
-
 import Graph from "./components/Graph"
 import FAQ from "./components/FAQ"
-import Reg from "./components/Reg"
-
-import React from "react";
+import React, { useState } from "react";
 
 function Dashboard() {
   return (
@@ -28,19 +26,89 @@ function Statistics() {
 }
 
 function Users() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await invoke("save_registration", {
+        data: formData,
+      });
+      setMessage(response); // Display success message from the backend
+      setFormData({ username: "", email: "", password: "" }); // Reset form
+    } catch (error) {
+      console.error("Error saving registration data:", error);
+      setMessage("Failed to save registration data.");
+    }
+  };
 
   return (
-    <Reg/>
-    /*<div className="py-2 px-3 my-1 bg-gradient-to-tl rounded-md from-grviolet to-grblue">
-      <span className="overflow-hidden transition-all font-bold text-xl">Literally me</span>
-      <img
-        src="https://sun9-72.userapi.com/impg/KsWXGvkp8JHlN6wF3prxbPz_yXUeFUvP4aVErA/75o0LiTS8Z0.jpg?size=604x604&quality=95&sign=81d759d9cd34c75ea52495a8417d191a&type=album"
-        className="py-5"
-      />
-      </div>*/
-  )
-
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white">
+      <h2 className="text-2xl font-bold mb-4">Register</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md"
+      >
+        <div className="mb-4">
+          <label className="block mb-2">Username</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring focus:ring-blue-500"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full p-2 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500"
+        >
+          Register
+        </button>
+      </form>
+      {message && <p className="mt-4 text-green-400">{message}</p>}
+    </div>
+  );
 }
+
 
 function GithubPage() {
   return <div>Github Page</div>;
