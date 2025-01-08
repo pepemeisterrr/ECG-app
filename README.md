@@ -22,10 +22,10 @@
 
 ## Установка
 1. Клонируйте репозиторий:
-   git clone https://github.com/pepemeisterrr/ECG-app.git
+>git clone https://github.com/pepemeisterrr/ECG-app.git
 2. Перейдите в директорию проекта:
-    cd ECG-app
+>cd ECG-app
 3. Установите зависимости:
-    npm install
-4. Запустите приложение в режиме разработки:
-    cargo tauri dev
+>npm install
+5. Запустите приложение в режиме разработки:
+>cargo tauri dev
