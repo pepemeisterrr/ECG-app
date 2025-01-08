@@ -34,7 +34,13 @@ function Users() {
 }
 
 function GithubPage() {
-  return <div>Github Page</div>;
+  return (
+  <div className="py-2 px-3 my-1">
+   <span className="overflow-hidden transition-all font-semibold text-xl">Here is the <a href="https://github.com/pepemeisterrr/ECG-app" target="_blank" rel="noopener noreferrer" className="text-sky-500 font-semibold hover:text-orange-600 underline">
+      GitHub repository
+      </a> for the ECG app.</span>
+  </div>
+  )
 }
 
 function Orders() {
