@@ -19,6 +19,8 @@
 1. Microsoft C++ Build Tools -> https://visualstudio.microsoft.com/visual-cpp-build-tools/
 2. Rust -> https://www.rust-lang.org/tools/install
 3. Node JS -> https://nodejs.org/en
+4. Tauri cli
+> cargo install tauri-cli --version "^2.0.0" --locked
 
 ## Установка
 1. Клонируйте репозиторий:
